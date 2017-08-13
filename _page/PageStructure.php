@@ -30,4 +30,5 @@ class PageStructure
     public function getMetaKeywords(){
         return $this->_metaKeywords;
     }
+
 }
