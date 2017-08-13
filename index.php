@@ -10,15 +10,22 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once '_product/Product.php';
-require_once '_product/Book.php';
-require_once '_product/DVD.php';
+require_once '_page/PageStructure.php';
 
-$slightEdge = new Book('Book','Slight Edge','300');
-$movie1 = new DVD('Movie','The Room');
+$home = new PageStructure('TITLE','desc','keywords, article, oop');
 
-echo '<p>The best book I ever read was the "'. $slightEdge->getProductTitle().'".</p>';
-echo "<p>". $movie1->getProductType() ." - ". $movie1->getProductTitle()."</p>";
-
-
-echo "<p>". $slightEdge->getProductTitle() ." - ". $slightEdge->getPageCount()."</p>";
+?>
+<!doctype html>
+<html>
+    <head>
+        <title><?php echo $home->getPageTitle(); ?></title>
+        <meta name="description" content="<?php echo $home->getMetaDescription(); ?>"/>
+        <meta name="keywords" content="<?php echo $home->getMetaKeywords(); ?>"/>
+    </head>
+    <body>
+        <h1>Test</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid beatae earum excepturi
+            explicabo fuga fugit in obcaecati, officia, placeat quia quis sint? Assumenda, doloribus laboriosam. Illum
+            libero magnam quas.</p>
+    </body>
+</html>
