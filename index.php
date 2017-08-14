@@ -13,12 +13,14 @@ error_reporting(E_ALL);
 require_once '_db/db.php';
 require_once '_page/PageStructure.php';
 
+$db = new db();
+$db = $db->getConnection();
 
-$database = new db();
-$db = $database->getConnection();
+$stmt = $db->prepare("Select * from pages WHERE page_id = '1'");
+$stmt->execute();
+$row = $stmt->fetch();
 
-
-$home = new PageStructure('TITLE','desc','keywords, article, oop');
+$home = new PageStructure($row['page_title'],'desc','keywords, article, oop');
 
 ?>
 <!doctype html>
@@ -30,9 +32,9 @@ $home = new PageStructure('TITLE','desc','keywords, article, oop');
     </head>
     <body>
         <h1>Test</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid beatae earum excepturi
-            explicabo fuga fugit in obcaecati, officia, placeat quia quis sint? Assumenda, doloribus laboriosam. Illum
-            libero magnam quas.</p>
+        <?php
+            echo $row['page_content'];
+        ?>
         <h3>Submit Data</h3>
         <form action="_form/process.php" method="post">
             <label for="">Name</label>
